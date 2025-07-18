@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { GraduationCap, Plus, FileText, BarChart3, Settings, Bell, Save } from "lucide-react";
+import { GraduationCap, Plus, FileText, Bell, Save } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -158,18 +158,7 @@ export default function AdminPanel() {
                 Add Unit Content
               </Button>
             </li>
-            <li>
-              <Button variant="ghost" className="w-full justify-start text-slate-600 hover:text-slate-900">
-                <BarChart3 className="mr-3 h-4 w-4" />
-                Analytics
-              </Button>
-            </li>
-            <li>
-              <Button variant="ghost" className="w-full justify-start text-slate-600 hover:text-slate-900">
-                <Settings className="mr-3 h-4 w-4" />
-                Settings
-              </Button>
-            </li>
+
           </ul>
         </nav>
       </aside>

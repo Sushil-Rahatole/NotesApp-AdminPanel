@@ -48,7 +48,12 @@ export class MemStorage implements IStorage {
 
   async createSemester(insertSemester: InsertSemester): Promise<Semester> {
     const id = this.currentSemesterId++;
-    const semester: Semester = { ...insertSemester, id };
+    const semester: Semester = { 
+      ...insertSemester, 
+      id,
+      university: insertSemester.university || null,
+      syllabus: insertSemester.syllabus || null
+    };
     this.semesters.set(id, semester);
     return semester;
   }
@@ -59,7 +64,12 @@ export class MemStorage implements IStorage {
 
   async createUnit(insertUnit: InsertUnit): Promise<Unit> {
     const id = this.currentUnitId++;
-    const unit: Unit = { ...insertUnit, id };
+    const unit: Unit = { 
+      ...insertUnit, 
+      id,
+      youtube: insertUnit.youtube || null,
+      question: insertUnit.question || null
+    };
     this.units.set(id, unit);
     return unit;
   }
