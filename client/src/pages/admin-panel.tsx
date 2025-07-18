@@ -100,16 +100,20 @@ export default function AdminPanel() {
     unitMutation.mutate(data);
   };
 
-  const patterns = ["2019 Pattern", "2021 Pattern", "2022 Pattern"];
-  const years = ["2021-2025", "2022-2026", "2023-2027", "2024-2028"];
-  const semesters = ["1", "2", "3", "4", "5", "6", "7", "8"];
+  const patterns = ["2019 Pattern", "2024 Pattern"];
+  const years = ["FE", "SE", "TE", "BE"];
+  const semesters = ["1", "2"];
   const branches = [
     "Computer Engineering",
     "Mechanical Engineering", 
     "Civil Engineering",
     "Electrical Engineering",
-    "Electronics Engineering"
+    "Electronics Engineering",
+    "Information Technology",
+    "AIDS",
+    "AIML"
   ];
+  const universities = ["SPPU University", "Mumbai University", "Pune University"];
   const units = ["Unit 1", "Unit 2", "Unit 3", "Unit 4", "Unit 5", "Unit 6"];
 
   return (
@@ -340,11 +344,20 @@ export default function AdminPanel() {
                       render={({ field }) => (
                         <FormItem className="lg:col-span-2">
                           <FormLabel>
-                            University <span className="text-slate-400">(Optional)</span>
+                            University <span className="text-red-500">*</span>
                           </FormLabel>
-                          <FormControl>
-                            <Input placeholder="e.g., University of Mumbai" {...field} />
-                          </FormControl>
+                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <FormControl>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Select University" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              {universities.map(university => (
+                                <SelectItem key={university} value={university}>{university}</SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
                           <FormMessage />
                         </FormItem>
                       )}
@@ -356,7 +369,7 @@ export default function AdminPanel() {
                       render={({ field }) => (
                         <FormItem className="lg:col-span-2">
                           <FormLabel>
-                            Syllabus Topics <span className="text-slate-400">(Optional)</span>
+                            Syllabus Topics <span className="text-red-500">*</span>
                           </FormLabel>
                           <FormControl>
                             <ArrayInput
@@ -566,11 +579,19 @@ export default function AdminPanel() {
                           <FormControl>
                             <Input 
                               type="url"
-                              placeholder="https://example.com/document.pdf"
+                              placeholder="https://drive.google.com/file/d/..."
                               {...field}
+                              onChange={(e) => {
+                                let url = e.target.value;
+                                // Convert Google Drive view URLs to preview URLs
+                                if (url.includes('drive.google.com/file/d/') && url.includes('/view')) {
+                                  url = url.replace('/view?usp=sharing', '/preview').replace('/view', '/preview');
+                                }
+                                field.onChange(url);
+                              }}
                             />
                           </FormControl>
-                          <p className="text-sm text-slate-500">URL must end with .pdf</p>
+                          <p className="text-sm text-slate-500">Paste Google Drive link - it will auto-convert to preview format</p>
                           <FormMessage />
                         </FormItem>
                       )}
@@ -582,7 +603,7 @@ export default function AdminPanel() {
                       render={({ field }) => (
                         <FormItem className="lg:col-span-2">
                           <FormLabel>
-                            YouTube Video URLs <span className="text-slate-400">(Optional)</span>
+                            YouTube Video URLs <span className="text-red-500">*</span>
                           </FormLabel>
                           <FormControl>
                             <ArrayInput
@@ -602,7 +623,7 @@ export default function AdminPanel() {
                       render={({ field }) => (
                         <FormItem className="lg:col-span-2">
                           <FormLabel>
-                            Practice Questions <span className="text-slate-400">(Optional)</span>
+                            Practice Questions <span className="text-red-500">*</span>
                           </FormLabel>
                           <FormControl>
                             <ArrayInput

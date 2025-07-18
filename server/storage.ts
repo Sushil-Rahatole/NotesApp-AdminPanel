@@ -51,7 +51,6 @@ export class MemStorage implements IStorage {
     const semester: Semester = { 
       ...insertSemester, 
       id,
-      university: insertSemester.university || null,
       syllabus: insertSemester.syllabus || null
     };
     this.semesters.set(id, semester);

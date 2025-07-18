@@ -4,6 +4,19 @@
 
 This is a full-stack web application for managing academic content including semesters and units. The system allows administrators to create and manage educational content with features for organizing courses by academic parameters like year, semester, branch, and pattern. It's built with a React frontend and Express.js backend, using Drizzle ORM for database operations.
 
+## Recent Changes (July 18, 2025)
+
+✓ Updated dropdown options:
+  - Patterns: Only 2019 and 2024 Pattern
+  - Academic Years: FE, SE, TE, BE
+  - Semesters: Only 1 and 2
+  - Branches: Added Information Technology, AIDS, AIML
+  - Universities: SPPU, Mumbai, Pune (dropdown selection)
+✓ Made all form fields required (removed optional labels)
+✓ Added Google Drive URL auto-conversion (view → preview)
+✓ Updated validation schemas for all required fields
+✓ Removed Analytics and Settings from navigation
+
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.

@@ -16,7 +16,7 @@ export const semesters = pgTable("semesters", {
   year: text("year").notNull(),
   sem: text("sem").notNull(),
   branch: text("branch").notNull(),
-  university: text("university"),
+  university: text("university").notNull(),
   syllabus: text("syllabus").array(),
 });
 
