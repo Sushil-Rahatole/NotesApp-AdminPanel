@@ -304,7 +304,7 @@ export default function AdminPanel() {
                             </FormControl>
                             <SelectContent>
                               {semesters.map(sem => (
-                                <SelectItem key={sem} value={sem}>Semester {sem}</SelectItem>
+                                <SelectItem key={sem} value={sem}>{sem}</SelectItem>
                               ))}
                             </SelectContent>
                           </Select>
@@ -488,7 +488,7 @@ export default function AdminPanel() {
                             </FormControl>
                             <SelectContent>
                               {semesters.map(sem => (
-                                <SelectItem key={sem} value={sem}>Semester {sem}</SelectItem>
+                                <SelectItem key={sem} value={sem}>{sem}</SelectItem>
                               ))}
                             </SelectContent>
                           </Select>
