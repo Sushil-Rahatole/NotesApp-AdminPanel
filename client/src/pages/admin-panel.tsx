@@ -50,7 +50,7 @@ export default function AdminPanel() {
 
   const semesterMutation = useMutation({
     mutationFn: async (data: SemesterFormData) => {
-      const response = await apiRequest("POST", "/api/semester", data);
+      const response = await apiRequest("POST", "/api/insertSemester", data);
       return response.json();
     },
     onSuccess: () => {
@@ -59,7 +59,7 @@ export default function AdminPanel() {
         description: "Semester created successfully",
       });
       semesterForm.reset();
-      queryClient.invalidateQueries({ queryKey: ["/api/semesters"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/insertSemester"] });
     },
     onError: (error: any) => {
       toast({
@@ -72,7 +72,7 @@ export default function AdminPanel() {
 
   const unitMutation = useMutation({
     mutationFn: async (data: UnitFormData) => {
-      const response = await apiRequest("POST", "/api/unit", data);
+      const response = await apiRequest("POST", "/api/insertUnitAndAppend", data);
       return response.json();
     },
     onSuccess: () => {
@@ -81,7 +81,7 @@ export default function AdminPanel() {
         description: "Unit content created successfully",
       });
       unitForm.reset();
-      queryClient.invalidateQueries({ queryKey: ["/api/units"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/insertUnitAndAppend"] });
     },
     onError: (error: any) => {
       toast({
@@ -145,7 +145,7 @@ export default function AdminPanel() {
                 onClick={() => setActiveView("semester")}
               >
                 <Plus className="mr-3 h-4 w-4" />
-                Add Semester
+                Add Subject
               </Button>
             </li>
             <li>
@@ -207,7 +207,7 @@ export default function AdminPanel() {
                       render={({ field }) => (
                         <FormItem className="lg:col-span-2">
                           <FormLabel>
-                            Title <span className="text-red-500">*</span>
+                            Subject <span className="text-red-500">*</span>
                           </FormLabel>
                           <FormControl>
                             <Input placeholder="e.g., Computer Engineering Semester 1" {...field} />
@@ -363,25 +363,7 @@ export default function AdminPanel() {
                       )}
                     />
 
-                    <FormField
-                      control={semesterForm.control}
-                      name="syllabus"
-                      render={({ field }) => (
-                        <FormItem className="lg:col-span-2">
-                          <FormLabel>
-                            Syllabus Topics <span className="text-red-500">*</span>
-                          </FormLabel>
-                          <FormControl>
-                            <ArrayInput
-                              items={field.value || []}
-                              onUpdate={field.onChange}
-                              placeholder="e.g., Data Structures and Algorithms"
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                    
                   </div>
 
                   <div className="flex justify-end space-x-4 pt-4">
@@ -412,7 +394,7 @@ export default function AdminPanel() {
                       render={({ field }) => (
                         <FormItem className="lg:col-span-2">
                           <FormLabel>
-                            Content Title <span className="text-red-500">*</span>
+                            Subject <span className="text-red-500">*</span>
                           </FormLabel>
                           <FormControl>
                             <Input placeholder="e.g., Introduction to Object Oriented Programming" {...field} />
