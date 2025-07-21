@@ -510,24 +510,16 @@ export default function AdminPanel() {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>
-                            Unit Number <span className="text-red-500">*</span>
+                            Unit / PYQ Title<span className="text-red-500">*</span>
                           </FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                              <SelectTrigger>
-                                <SelectValue placeholder="Select Unit" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                              {units.map(unit => (
-                                <SelectItem key={unit} value={unit}>{unit}</SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
+                          <FormControl>
+                            <Input placeholder="e.g., Unit 1, Summer-2024" {...field} />
+                          </FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
                     />
+
 
                     <FormField
                       control={unitForm.control}
